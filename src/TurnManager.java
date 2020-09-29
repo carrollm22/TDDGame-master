@@ -1,5 +1,5 @@
 import java.util.HashMap;
-
+// this is a test for version control
 public class TurnManager {
     HashMap<Actor, Integer> map = new HashMap<Actor, Integer>();
     public TurnManager() {
