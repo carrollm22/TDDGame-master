@@ -15,4 +15,8 @@ public class TurnManager {
             throw new RuntimeException();
         }
     }
+
+    public void remove(SimpleActor actor) {
+        map.remove(actor);
+    }
 }
