@@ -43,6 +43,6 @@ public class ActorTest {
         tm.add(actor);
         tm.add(actor2);
         tm.remove(actor);
-        assertEquals("Red", actor2.getName());
+        assertEquals(tm.map.size(), 1);
     }
 }
