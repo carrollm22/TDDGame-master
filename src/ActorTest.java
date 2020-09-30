@@ -45,4 +45,14 @@ public class ActorTest {
         tm.remove(actor);
         assertEquals(tm.map.size(), 1);
     }
+
+    @Test
+    public void nextTurn() {
+        SimpleActor actor = new SimpleActor("Larry", 8);
+        SimpleActor actor2 = new SimpleActor("Jenny", 3);
+        TurnManager tm = new TurnManager();
+        tm.add(actor);
+        tm.add(actor2);
+        tm.nextTtheurn();
+    }
 }
