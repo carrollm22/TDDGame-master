@@ -43,16 +43,38 @@ public class ActorTest {
         tm.add(actor);
         tm.add(actor2);
         tm.remove(actor);
-        assertEquals(tm.map.size(), 1);
+        assertEquals(tm.actorTurns.size(), 1);
     }
 
     @Test
-    public void nextTurn() {
+    public void nextTurnWithOneActor() {
         SimpleActor actor = new SimpleActor("Larry", 8);
-        SimpleActor actor2 = new SimpleActor("Jenny", 3);
         TurnManager tm = new TurnManager();
         tm.add(actor);
-        tm.add(actor2);
-        tm.nextTtheurn();
+        assertEquals(tm.nextTurn(), actor);
+    }
+
+    @Test
+    public void nextTurnWithTwoActors() {
+        SimpleActor a1 = new SimpleActor("Larry", 2);
+        SimpleActor a2 = new SimpleActor("Jerry", 1);
+
+        TurnManager tm = new TurnManager();
+        tm.add(a1);
+        tm.add(a2);
+        assertEquals(tm.nextTurn(), a1);
+    }
+
+    @Test
+    public void print() {
+        SimpleActor a1 = new SimpleActor("Larry", 2);
+        SimpleActor a2 = new SimpleActor("Jerry", 1);
+
+        TurnManager tm = new TurnManager();
+        tm.add(a1);
+        tm.add(a2);
+        tm.nextTurn();
+
+        tm.printTurnMeters();
     }
 }
