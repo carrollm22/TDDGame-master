@@ -68,7 +68,7 @@ public class ActorTest {
     @Test
     public void print() {
         SimpleActor a1 = new SimpleActor("Larry", 2);
-        SimpleActor a2 = new SimpleActor("Jerry", 1);
+        SimpleActor a2 = new SimpleActor("John", 1);
 
         TurnManager tm = new TurnManager();
         tm.add(a1);

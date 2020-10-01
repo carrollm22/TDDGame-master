@@ -23,13 +23,11 @@ public class TurnManager {
 
     public Actor nextTurn() {
         Actor nextActorForTurn = null;
-        for (Actor actor : actorTurns.keySet()) {
-            if (nextActorForTurn == null) {
-                nextActorForTurn = actor;
-            } else if (actorTurns.get(actor) > actorTurns.get(nextActorForTurn)) {
-                nextActorForTurn = actor;
-            }
-        }
+        nextActorForTurn = getNextActor(nextActorForTurn);
+        return bringTurnToOneHundred(nextActorForTurn);
+    }
+
+    private Actor bringTurnToOneHundred(Actor nextActorForTurn) {
         if (actorTurns.get(nextActorForTurn) <= 100) {
             for (Actor actor : actorTurns.keySet()) {
                 actorTurns.replace(actor, actorTurns.get(actor), actorTurns.get(actor) + actor.getSpeed());
@@ -40,6 +38,17 @@ public class TurnManager {
             actorTurns.replace(nextActorForTurn, turnMeter - 100);
             return nextActorForTurn;
         }
+    }
+
+    private Actor getNextActor(Actor nextActorForTurn) {
+        for (Actor actor : actorTurns.keySet()) {
+            if (nextActorForTurn == null) {
+                nextActorForTurn = actor;
+            } else if (actorTurns.get(actor) > actorTurns.get(nextActorForTurn)) {
+                nextActorForTurn = actor;
+            }
+        }
+        return nextActorForTurn;
     }
 
     public void printTurnMeters() {
@@ -58,6 +67,10 @@ public class TurnManager {
             }
         }
 
+        formatTurnMeters(entries, longestName, longestTurnMeter);
+    }
+
+    private void formatTurnMeters(List<Map.Entry<Actor, Integer>> entries, int longestName, int longestTurnMeter) {
         for (Map.Entry<Actor, Integer> entry : entries) {
             System.out.println(
                     String.format("%1$-" + longestName + "s", entry.getKey().getName())
